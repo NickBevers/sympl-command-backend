@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import SearchResult from './routes/searchResults';
@@ -14,6 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', SearchResult);
+
+app.get('/', (req: Request, res: Response) => {
+    res.send("This is a Sympl API, please use the /api endpoint.");
+});
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
